@@ -33,18 +33,24 @@ class TwitterClient: BDBOAuth1SessionManager {
     })
   }
 
+  func logout() {
+    User.currentUser = nil
+    deauthorize()
+    NotificationCenter.default.post(name: Notification.Name(rawValue: User.userDidLogoutNotification), object: nil)
+  }
+
   func handleOpenUrl(url: URL) {
     let requestToken = BDBOAuth1Credential(queryString: url.query)
 
     fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: {(accessToken: BDBOAuth1Credential!) -> Void in
       print("I got an access token")
-      self.loginSuccess?()
-//      self.currentAccount(success: { (user: User) in
-//        print("Username: \(String(describing: user.name))")
-//      }, failure: { (error: Error) in
-//        print("error: \(error.localizedDescription)")
-//      })
-//
+      self.currentAccount(success: { (user: User) in
+        User.currentUser = user
+        self.loginSuccess?()
+      }, failure: { (error: Error) in
+        print("error: \(error.localizedDescription)")
+        self.loginFailure?(error)
+      })
     }, failure: {(error: Error!) -> Void in
       print("error: \(error.localizedDescription)")
       self.loginFailure?(error)
