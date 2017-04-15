@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     if User.currentUser != nil {
-      print("There is a user")
       let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
       let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
 
@@ -58,8 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-    print(url.description)
-    
     TwitterClient.sharedInstance?.handleOpenUrl(url: url)
     return true
   }

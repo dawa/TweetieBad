@@ -24,7 +24,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faK-pV-XGo">
                                 <rect key="frame" x="62" y="481" width="250" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.2548622775027537" green="0.75833537268987161" blue="0.99668069948186533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -43,7 +43,7 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--Tweets View Controller-->
+        <!--Home-->
         <scene sceneID="qdB-bB-kQG">
             <objects>
                 <viewController id="ehf-Kj-jsz" customClass="TweetsViewController" customModule="TweetieBad" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,9 +55,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Fm-S7-6OD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Fm-S7-6OD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="o3n-BI-p3a" customClass="MessageCell" customModule="TweetieBad" customModuleProvider="target">
@@ -84,9 +83,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Fm-S7-6OD" firstAttribute="top" secondItem="F1o-bn-enm" secondAttribute="bottom" id="DUx-ey-8Yk"/>
+                            <constraint firstItem="1Fm-S7-6OD" firstAttribute="leading" secondItem="ITO-F5-K1V" secondAttribute="leading" id="Msk-mz-YfH"/>
+                            <constraint firstItem="ADg-k9-s6y" firstAttribute="top" secondItem="1Fm-S7-6OD" secondAttribute="bottom" id="fjX-jf-dME"/>
+                            <constraint firstAttribute="trailing" secondItem="1Fm-S7-6OD" secondAttribute="trailing" id="vVg-rE-ATo"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="W0F-77-wG2">
+                    <navigationItem key="navigationItem" title="Home" id="W0F-77-wG2">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="W26-oc-zJR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onLogoutButton:" destination="ehf-Kj-jsz" id="cNp-Si-aSA"/>
                             </connections>
@@ -105,9 +111,13 @@
             <objects>
                 <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="XKZ-eI-cbO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNw-JD-O64">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mNw-JD-O64">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.04763970365530279" green="0.50575032363811023" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -22,13 +22,10 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     deauthorize()
     fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "tweetiebad://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
-      print("I got a token! \(requestToken!.token!)")
+
       let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token!)")
-      UIApplication.shared.open(url!, options: [:], completionHandler: { (bool: Bool) -> Void in
-        print("completion handler fired")
-      })
+      UIApplication.shared.open(url!, options: [:], completionHandler: nil)
     }, failure: {(error: Error!) -> Void in
-      //print("error: \(error.localizedDescription)")
       self.loginFailure?(error)
     })
   }
@@ -43,16 +40,13 @@ class TwitterClient: BDBOAuth1SessionManager {
     let requestToken = BDBOAuth1Credential(queryString: url.query)
 
     fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: {(accessToken: BDBOAuth1Credential!) -> Void in
-      print("I got an access token")
       self.currentAccount(success: { (user: User) in
         User.currentUser = user
         self.loginSuccess?()
       }, failure: { (error: Error) in
-        print("error: \(error.localizedDescription)")
         self.loginFailure?(error)
       })
     }, failure: {(error: Error!) -> Void in
-      print("error: \(error.localizedDescription)")
       self.loginFailure?(error)
     })
   }
