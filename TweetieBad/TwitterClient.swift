@@ -51,12 +51,12 @@ class TwitterClient: BDBOAuth1SessionManager {
     })
   }
 
-  func homeTimeline(sucess: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+  func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
     get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
       //print("Timeline: \(response!)")
       let dictionaries = response as! [NSDictionary]
       let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
-      sucess(tweets)
+      success(tweets)
     }, failure: { (task: URLSessionDataTask?, error: Error) in
       failure(error)
     })
@@ -68,6 +68,66 @@ class TwitterClient: BDBOAuth1SessionManager {
       let userDictionary = response as! NSDictionary
       let user = User(dictionary: userDictionary)
       success(user)
+    }, failure: { (task: URLSessionDataTask?, error: Error) in
+      failure(error)
+    })
+  }
+
+  func favorite(id: Int64, create: Bool, success: @escaping () -> (), failure: @escaping (Error?) -> ()){
+    let endpoint: String!
+
+    // favorite or unfavorite
+    if (create) {
+      endpoint  = "1.1/favorites/create.json"
+    }else{
+      endpoint = "1.1/favorites/destroy.json"
+    }
+
+    var params = Dictionary<String, Any>()
+    params["id"] = id
+
+    post(endpoint, parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+      success()
+    }, failure: { (task: URLSessionDataTask?, error: Error) in
+      failure(error)
+    })
+  }
+
+  func retweet(id: Int64, create: Bool, success: @escaping () -> (), failure: @escaping (Error?) -> ()){
+    let endpoint: String!
+
+    // retweet or unretweeet
+    if (create) {
+      endpoint = "1.1/statuses/retweet/\(id).json"
+    }else{
+      endpoint = "1.1/statuses/unretweet/\(id).json"
+    }
+
+    var params = Dictionary<String, Any>()
+    params["id"] = id
+
+    post(endpoint, parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+      success()
+    }, failure: { (task: URLSessionDataTask?, error: Error) in
+      failure(error)
+    })
+  }
+
+  func postTweet(tweet: String, id: Int64?, success: @escaping () -> (), failure: @escaping (Error?) -> ()){
+    if (tweet.characters.count > 140 || tweet.characters.count == 0) {
+      failure(nil)
+      return
+    }
+
+    var params = Dictionary<String, Any>()
+    params["status"] = tweet
+
+    if id != nil {
+      params["in_reply_to_status_id"] = id
+    }
+
+    post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+      success()
     }, failure: { (task: URLSessionDataTask?, error: Error) in
       failure(error)
     })

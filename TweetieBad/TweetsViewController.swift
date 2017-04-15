@@ -16,17 +16,17 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Initialize a UIRefreshControl
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
+
+    tableView.insertSubview(refreshControl, at: 0)
     tableView.delegate = self
     tableView.dataSource = self
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 120
+    tableView.estimatedRowHeight = 220
 
-    TwitterClient.sharedInstance?.homeTimeline(sucess: { (tweets: [Tweet]) in
-      self.tweets = tweets
-      self.tableView.reloadData()
-    }, failure: { (error: Error) in
-      print("error: \(error.localizedDescription)")
-    })
+    homeTimeline()
   }
 
   override func didReceiveMemoryWarning() {
@@ -35,13 +35,28 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.tweets == nil ? 0 : self.tweets!.count
+    return tweets == nil ? 0 : tweets!.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
+
     cell.tweet = tweets[indexPath.row]
     return cell
+  }
+
+  func homeTimeline() {
+    TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+      self.tweets = tweets
+      self.tableView.reloadData()
+    }, failure: { (error: Error) in
+      print("error: \(error.localizedDescription)")
+    })
+  }
+
+  func refreshControlAction(refreshControl: UIRefreshControl){
+    homeTimeline()
+    refreshControl.endRefreshing()
   }
 
   @IBAction func onLogoutButton(_ sender: Any) {
