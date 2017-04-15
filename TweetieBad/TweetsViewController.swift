@@ -40,7 +40,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
-    cell.messagesLabel.text = tweets[indexPath.row].text
+    cell.tweet = tweets[indexPath.row]
     return cell
   }
 
