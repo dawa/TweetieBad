@@ -64,9 +64,9 @@ class TweetDetailViewController: UIViewController {
 
     if let favorited = tweet.favorited {
       if (favorited) {
-        favoriteImageView.image = UIImage(named: "hearted")
+        favoriteImageView.image = UIImage(named: "starred")
       } else {
-        favoriteImageView.image = UIImage(named: "heart")
+        favoriteImageView.image = UIImage(named: "star")
       }
     }
   }
@@ -142,14 +142,16 @@ class TweetDetailViewController: UIViewController {
 
     TwitterClient.sharedInstance?.favorite(id: tweet.id!, create: create, success: { () -> () in
       if (create == true){
-        self.favoriteImageView.image = UIImage(named: "heart")
-        self.tweet.favorited = false
-        self.tweet.favoritesCount = self.tweet.favoritesCount - 1
-        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount) FAVORITES"
-      } else {
-        self.favoriteImageView.image = UIImage(named: "hearted")
+        // Favorite
+        self.favoriteImageView.image = UIImage(named: "starred")
         self.tweet.favorited = true
         self.tweet.favoritesCount = self.tweet.favoritesCount + 1
+        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount) FAVORITES"
+      } else {
+        // Unfavorite
+        self.favoriteImageView.image = UIImage(named: "star")
+        self.tweet.favorited = false
+        self.tweet.favoritesCount = self.tweet.favoritesCount - 1
         self.favoriteCountLabel.text = "\(self.tweet.favoritesCount) FAVORITES"
       }
 

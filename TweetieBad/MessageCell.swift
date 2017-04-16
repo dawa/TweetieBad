@@ -39,9 +39,9 @@ class MessageCell: UITableViewCell {
       }
 
       if tweet.favorited! {
-        favoriteImageView.image = UIImage(named: "hearted")
+        favoriteImageView.image = UIImage(named: "starred")
       } else {
-        favoriteImageView.image = UIImage(named: "heart")
+        favoriteImageView.image = UIImage(named: "star")
       }
 
       if tweet.retweeted! {

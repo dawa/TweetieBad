@@ -267,8 +267,8 @@
                                     <outletCollection property="gestureRecognizers" destination="cM8-gi-r0s" appends="YES" id="6YS-vo-l0x"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="1/24/15 12:23 AM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQx-h9-gqX">
-                                <rect key="frame" x="10" y="200" width="97" height="11"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/24/15 12:23 AM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQx-h9-gqX">
+                                <rect key="frame" x="10" y="211" width="97" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -303,6 +303,12 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Remember to include an animated gif and # of hours spent in the README. You can get started by copying this" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsD-VP-mPF">
+                                <rect key="frame" x="10" y="169" width="360" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vg-Nj-AUF">
                                 <rect key="frame" x="10" y="216" width="360" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -315,12 +321,6 @@
                                 <rect key="frame" x="10" y="286" width="360" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="753" text="Remember to include an animated gif and # of hours spent in the README. You can get started by copying this" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsD-VP-mPF">
-                                <rect key="frame" x="10" y="169" width="355" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -329,7 +329,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7Vg-Nj-AUF" secondAttribute="trailing" constant="-11" id="2Da-bz-5DG"/>
                             <constraint firstItem="NuW-J6-hps" firstAttribute="leading" secondItem="7XR-OJ-zVb" secondAttribute="trailing" constant="50" id="2OY-Qh-dJ8"/>
                             <constraint firstItem="gQx-h9-gqX" firstAttribute="leading" secondItem="tsD-VP-mPF" secondAttribute="leading" id="2fg-9k-zbf"/>
-                            <constraint firstItem="gQx-h9-gqX" firstAttribute="top" secondItem="tsD-VP-mPF" secondAttribute="bottom" constant="10" id="2lq-rd-gi4"/>
+                            <constraint firstItem="gQx-h9-gqX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tsD-VP-mPF" secondAttribute="bottom" constant="5" id="2lq-rd-gi4"/>
                             <constraint firstItem="Z7f-3g-O4m" firstAttribute="top" secondItem="BYu-mL-ntL" secondAttribute="bottom" constant="3" id="5SJ-Xo-bJP"/>
                             <constraint firstItem="7XR-OJ-zVb" firstAttribute="leading" secondItem="L0y-X4-MdY" secondAttribute="trailing" constant="50" id="6dx-6v-zWE"/>
                             <constraint firstItem="gFC-sn-8Kw" firstAttribute="trailing" secondItem="dyI-bH-IUn" secondAttribute="trailing" id="89M-EV-bWA"/>
@@ -360,7 +360,7 @@
                             <constraint firstItem="hAw-7C-o0N" firstAttribute="top" secondItem="bto-sO-aU4" secondAttribute="top" id="tvy-3f-CrF"/>
                             <constraint firstItem="euG-O6-efL" firstAttribute="top" secondItem="dyI-bH-IUn" secondAttribute="top" id="vqO-fG-DQl"/>
                             <constraint firstItem="25k-g2-ot8" firstAttribute="centerY" secondItem="AzN-Gb-mc8" secondAttribute="centerY" constant="-87" id="vyG-Q1-BEH"/>
-                            <constraint firstAttribute="trailing" secondItem="tsD-VP-mPF" secondAttribute="trailing" constant="10" id="wIn-fe-CoZ"/>
+                            <constraint firstAttribute="trailing" secondItem="tsD-VP-mPF" secondAttribute="trailing" constant="5" id="wIn-fe-CoZ"/>
                             <constraint firstItem="BYu-mL-ntL" firstAttribute="leading" secondItem="gFC-sn-8Kw" secondAttribute="trailing" constant="5" id="yBi-nC-Ixc"/>
                         </constraints>
                     </view>
@@ -580,6 +580,6 @@
         <image name="retweeted" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8ab-DG-vip"/>
+        <segue reference="NvG-zD-NrP"/>
     </inferredMetricsTieBreakers>
 </document>
