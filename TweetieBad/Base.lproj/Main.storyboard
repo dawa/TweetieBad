@@ -235,24 +235,36 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply" translatesAutoresizingMaskIntoConstraints="NO" id="L0y-X4-MdY">
                                 <rect key="frame" x="86" y="257" width="24" height="24"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="h3z-Hi-uRy"/>
                                     <constraint firstAttribute="height" constant="24" id="uV8-eh-B5y"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="66l-Or-8Of" appends="YES" id="eWS-33-aPf"/>
+                                </connections>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7XR-OJ-zVb">
                                 <rect key="frame" x="160" y="257" width="24" height="24"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="YiT-zT-1zm"/>
                                     <constraint firstAttribute="height" constant="24" id="hRc-U8-0PJ"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="FtJ-dw-mgX" appends="YES" id="wRT-bE-zeE"/>
+                                </connections>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NuW-J6-hps">
                                 <rect key="frame" x="234" y="257" width="24" height="24"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="aiU-fy-Tei"/>
                                     <constraint firstAttribute="width" constant="24" id="ujj-sp-PMS"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="cM8-gi-r0s" appends="YES" id="6YS-vo-l0x"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/24/15 12:23 AM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQx-h9-gqX">
                                 <rect key="frame" x="10" y="194.5" width="97" height="15"/>
@@ -369,6 +381,7 @@
                         <outlet property="favoriteImageView" destination="NuW-J6-hps" id="794-fG-1Oh"/>
                         <outlet property="messageLabel" destination="tsD-VP-mPF" id="hbz-OV-ZLn"/>
                         <outlet property="profileImageView" destination="gFC-sn-8Kw" id="eGY-ka-yRh"/>
+                        <outlet property="replyImageView" destination="L0y-X4-MdY" id="MbA-nR-Lcf"/>
                         <outlet property="retweetCountLabel" destination="bto-sO-aU4" id="VBk-2v-SIn"/>
                         <outlet property="retweetImageView" destination="7XR-OJ-zVb" id="WsR-2m-h5o"/>
                         <outlet property="retweetedImageView" destination="dyI-bH-IUn" id="aiP-OF-1em"/>
@@ -378,6 +391,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmo-n5-Q73" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="66l-Or-8Of">
+                    <connections>
+                        <action selector="onReply:" destination="C2L-np-c2E" id="rwY-h4-vGG"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="FtJ-dw-mgX">
+                    <connections>
+                        <action selector="onRetweet:" destination="C2L-np-c2E" id="ctp-GL-kB5"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="cM8-gi-r0s">
+                    <connections>
+                        <action selector="onFavorite:" destination="C2L-np-c2E" id="G5z-87-ykB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3050" y="143"/>
         </scene>
@@ -476,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWe-bO-hU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3221.5999999999999" y="903.59820089955031"/>
+            <point key="canvasLocation" x="3050" y="985"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I18-Ov-uB2">
@@ -504,7 +532,6 @@
         <!--Navigation Controller-->
         <scene sceneID="pO3-7G-rId">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oda-tc-S9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KcY-f9-lQw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sJL-BA-Bo4">
@@ -520,6 +547,7 @@
                         <segue destination="C2L-np-c2E" kind="relationship" relationship="rootViewController" id="Hjx-BE-O3n"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oda-tc-S9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2281" y="143"/>
         </scene>
@@ -540,7 +568,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8d4-86-v0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2336.5" y="904.5"/>
+            <point key="canvasLocation" x="2309" y="985"/>
         </scene>
     </scenes>
     <resources>

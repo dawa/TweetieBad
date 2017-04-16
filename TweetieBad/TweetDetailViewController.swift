@@ -87,5 +87,72 @@ class TweetDetailViewController: UIViewController {
     }
   }
 
+  @IBAction func onRetweet(_ sender: UITapGestureRecognizer) {
+    var create: Bool!
 
+    if let retweeted = tweet.retweeted {
+      if (retweeted){
+        // Unretweet
+        create = false
+      } else {
+        // Retweet
+        create = true
+      }
+    }
+
+    TwitterClient.sharedInstance?.retweet(id: tweet.id!, create: create, success: { () -> () in
+      // On success save state locally, update counts and retweeted image
+      if (create == true){
+        self.retweetImageView.image = UIImage(named: "retweeted")
+        self.tweet.retweeted = true
+        self.tweet.retweetCount = self.tweet.retweetCount + 1
+        self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+      } else {
+        self.retweetImageView.image = UIImage(named: "retweet")
+        self.tweet.retweeted = false
+        self.tweet.retweetCount = self.tweet.retweetCount - 1
+        self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+      }
+
+      return Void()
+    }, failure: { (error: Error?) -> () in
+      if let error = error {
+        print(error.localizedDescription)
+      }
+    })
+  }
+
+  @IBAction func onFavorite(_ sender: UITapGestureRecognizer) {
+    var create: Bool!
+
+    if let favorited = tweet.favorited {
+      if (favorited){
+        // Unfavorite
+        create = false
+      } else {
+        // Favorite
+        create = true
+      }
+    }
+
+    TwitterClient.sharedInstance?.favorite(id: tweet.id!, create: create, success: { () -> () in
+      if (create == true){
+        self.favoriteImageView.image = UIImage(named: "heart")
+        self.tweet.favorited = false
+        self.tweet.favoritesCount = self.tweet.favoritesCount - 1
+        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount)"
+      } else {
+        self.favoriteImageView.image = UIImage(named: "hearted")
+        self.tweet.favorited = true
+        self.tweet.favoritesCount = self.tweet.favoritesCount + 1
+        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount)"
+      }
+
+      return Void()
+    }, failure: { (error: Error?) -> () in
+      if let error = error {
+        print(error.localizedDescription)
+      }
+    })
+  }
 }

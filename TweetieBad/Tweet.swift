@@ -16,10 +16,8 @@ class Tweet: NSObject {
   var favoritesCount: Int = 0
   var retweeted: Bool?
   var favorited: Bool?
-  //var author: User?
   var id: Int64?
   var user: NSDictionary?
-
   var screenName: String!
   var realName: String?
   var profileImageUrl: URL?
