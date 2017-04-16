@@ -8,10 +8,12 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+  var isMoreDataLoading = false
   var tweets: [Tweet]!
+  var maxId: Int64?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,6 +27,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     tableView.dataSource = self
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 220
+
+    // Infinite Scrolling
+    let tableFooterView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+    let loadingView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    loadingView.startAnimating()
+    loadingView.center = tableFooterView.center
+    tableFooterView.addSubview(loadingView)
+    self.tableView.tableFooterView = tableFooterView
 
     homeTimeline()
   }
@@ -46,8 +56,21 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
   }
 
   func homeTimeline() {
-    TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
-      self.tweets = tweets
+    var parameters: [String : AnyObject] = [String : AnyObject]()
+
+    if maxId != nil {
+      parameters["max_id"] = maxId as AnyObject?
+    }
+
+    TwitterClient.sharedInstance?.homeTimeline(parameters: parameters, success: { (tweets: [Tweet]) in
+      // If scrolling add the contents to the tweets array otherwise reloading
+      if self.maxId == nil {
+        self.tweets = tweets
+      } else {
+        self.tweets.append(contentsOf: tweets)
+      }
+
+      self.isMoreDataLoading = false
       self.tableView.reloadData()
     }, failure: { (error: Error) in
       print("error: \(error.localizedDescription)")
@@ -68,6 +91,25 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
   func refreshControlAction(refreshControl: UIRefreshControl){
     homeTimeline()
     refreshControl.endRefreshing()
+  }
+
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if (!isMoreDataLoading) {
+      // Calculate the position of one screen length before the bottom of the results
+      let scrollViewContentHeight = tableView.contentSize.height
+      let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+
+      // When the user has scrolled past the threshold, start requesting
+      if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+        isMoreDataLoading = true
+
+        if let maxId = tweets.last?.id {
+          self.maxId = maxId - 1
+        }
+
+        homeTimeline()
+      }
+    }
   }
 
   @IBAction func onLogoutButton(_ sender: Any) {
