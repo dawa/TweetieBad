@@ -62,71 +62,71 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="142" id="o3n-BI-p3a" customClass="MessageCell" customModule="TweetieBad" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o3n-BI-p3a" id="581-bs-g9L" customClass="MessageCell" customModule="TweetieBad" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o3n-BI-p3a" id="581-bs-g9L">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have seen the future of newspapers and there is none" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jc-Th-1sq">
-                                                    <rect key="frame" x="79" y="62" width="291" height="33.5"/>
+                                                    <rect key="frame" x="79" y="52" width="291" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fW2-Wi-qmE">
-                                                    <rect key="frame" x="10" y="39" width="64" height="64"/>
+                                                    <rect key="frame" x="10" y="31" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="ZOv-sp-QYB"/>
                                                         <constraint firstAttribute="width" constant="64" id="uPq-nD-iPo"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe retweeted" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-jB-rAj">
-                                                    <rect key="frame" x="64" y="5" width="114" height="15"/>
+                                                    <rect key="frame" x="56" y="5" width="114" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rUT-Sz-vzl">
-                                                    <rect key="frame" x="30" y="5" width="24" height="24"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweeted" translatesAutoresizingMaskIntoConstraints="NO" id="rUT-Sz-vzl">
+                                                    <rect key="frame" x="30" y="5" width="16" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="beh-Ed-flj"/>
-                                                        <constraint firstAttribute="height" constant="24" id="mVl-h9-Q8f"/>
+                                                        <constraint firstAttribute="width" constant="16" id="beh-Ed-flj"/>
+                                                        <constraint firstAttribute="height" constant="16" id="mVl-h9-Q8f"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jcH-7N-bLm">
-                                                    <rect key="frame" x="133" y="112.5" width="24" height="24"/>
+                                                    <rect key="frame" x="125" y="120.5" width="16" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="fvp-O8-bro"/>
-                                                        <constraint firstAttribute="height" constant="24" id="xxj-I5-3rR"/>
+                                                        <constraint firstAttribute="width" constant="16" id="fvp-O8-bro"/>
+                                                        <constraint firstAttribute="height" constant="16" id="xxj-I5-3rR"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PhI-5e-pRk">
-                                                    <rect key="frame" x="187" y="112.5" width="24" height="24"/>
+                                                    <rect key="frame" x="171" y="120.5" width="16" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="Xxv-Z7-FXQ"/>
-                                                        <constraint firstAttribute="height" constant="24" id="aNl-bE-qKB"/>
+                                                        <constraint firstAttribute="width" constant="16" id="Xxv-Z7-FXQ"/>
+                                                        <constraint firstAttribute="height" constant="16" id="aNl-bE-qKB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Micheal Moran" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-c8-nG9">
-                                                    <rect key="frame" x="79" y="39" width="108" height="18"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Micheal Moran" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj8-c8-nG9">
+                                                    <rect key="frame" x="79" y="31" width="95" height="16"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UKx-yb-2Lq">
-                                                    <rect key="frame" x="79" y="112.5" width="24" height="24"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply" translatesAutoresizingMaskIntoConstraints="NO" id="UKx-yb-2Lq">
+                                                    <rect key="frame" x="79" y="120.5" width="16" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="ZSx-fb-p9E"/>
-                                                        <constraint firstAttribute="width" constant="24" id="yb1-Ll-O5E"/>
+                                                        <constraint firstAttribute="height" constant="16" id="ZSx-fb-p9E"/>
+                                                        <constraint firstAttribute="width" constant="16" id="yb1-Ll-O5E"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@TheMichealMoran" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kj-cd-Mfs">
-                                                    <rect key="frame" x="192" y="42" width="112" height="15"/>
+                                                    <rect key="frame" x="179" y="32" width="171" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlf-pK-nnE">
-                                                    <rect key="frame" x="355" y="42" width="15" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlf-pK-nnE">
+                                                    <rect key="frame" x="355" y="32" width="15" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -144,6 +144,7 @@
                                                 <constraint firstItem="Gj8-c8-nG9" firstAttribute="leading" secondItem="fW2-Wi-qmE" secondAttribute="trailing" constant="5" id="QYn-ri-Ps4"/>
                                                 <constraint firstItem="rUT-Sz-vzl" firstAttribute="leading" secondItem="581-bs-g9L" secondAttribute="leading" constant="30" id="RW8-SD-QQ3"/>
                                                 <constraint firstAttribute="bottom" secondItem="UKx-yb-2Lq" secondAttribute="bottom" constant="5" id="RkI-lg-Wr3"/>
+                                                <constraint firstItem="qlf-pK-nnE" firstAttribute="leading" secondItem="6Kj-cd-Mfs" secondAttribute="trailing" constant="5" id="SWk-fJ-QAL"/>
                                                 <constraint firstItem="UKx-yb-2Lq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3Jc-Th-1sq" secondAttribute="bottom" constant="5" id="aa0-d7-W8O"/>
                                                 <constraint firstItem="ChF-jB-rAj" firstAttribute="leading" secondItem="rUT-Sz-vzl" secondAttribute="trailing" constant="10" id="b6e-tj-5NQ"/>
                                                 <constraint firstItem="Gj8-c8-nG9" firstAttribute="top" secondItem="fW2-Wi-qmE" secondAttribute="top" id="i85-2Y-Ydi"/>
@@ -221,4 +222,8 @@
             <point key="canvasLocation" x="880.79999999999995" y="143.47826086956522"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="reply" width="32" height="32"/>
+        <image name="retweeted" width="32" height="32"/>
+    </resources>
 </document>

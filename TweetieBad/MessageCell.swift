@@ -23,19 +23,44 @@ class MessageCell: UITableViewCell {
 
   var tweet: Tweet! {
     didSet {
-      if let author = tweet.author {
-        usernameLabel.text = author.name
-        if let screenname = author.screenname {
-          screennameLabel.text = "@\(String(describing: screenname))"
-        }
+      guard tweet != nil else {
+        return
+      }
 
-        if let profileUrl = author.profileUrl {
-          profileImageView.setImageWith(profileUrl)
-        }
+      usernameLabel.text = tweet.realName
+
+      if let screenName = tweet.screenName {
+        screennameLabel.text = "@\(String(describing: screenName))"
+      }
+
+      if let profileImageUrl = tweet.profileImageUrl {
+        profileImageView.setImageWith(profileImageUrl)
+      }
+
+      if tweet.favorited! {
+        favoriteImageView.image = UIImage(named: "hearted")
+      } else {
+        favoriteImageView.image = UIImage(named: "heart")
+      }
+
+      if tweet.retweeted! {
+        retweetImageView.image = UIImage(named: "retweeted")
+      } else {
+        retweetImageView.image = UIImage(named: "retweet")
+      }
+
+      if let retweetedByName = tweet.retweetedByName {
+        retweetedLabel.text = "\(retweetedByName) retweeted"
+      } else {
+        retweetedLabel.isHidden = true
+        retweetedImageView.isHidden = true
       }
 
       messagesLabel.text = tweet.text
-      createAtLabel.text = tweet.timestamp?.timeIntervalSinceNow.description
+
+      if let timestamp = tweet.timestamp {
+        createAtLabel.text = "• " + timestamp.getElapsedInterval()
+      }
     }
   }
 
@@ -49,5 +74,26 @@ class MessageCell: UITableViewCell {
       super.setSelected(selected, animated: animated)
 
       // Configure the view for the selected state
+  }
+}
+
+extension Date {
+
+  func getElapsedInterval() -> String {
+
+    let interval = Calendar.current.dateComponents([.year, .month, .day], from: self, to: Date())
+
+    if let year = interval.year, year > 0 {
+      return year == 1 ? "\(year)" + " " + "year" :
+        "\(year)" + " " + "years"
+    } else if let month = interval.month, month > 0 {
+      return month == 1 ? "\(month)" + " " + "month" :
+        "\(interval)" + " " + "months"
+    } else if let day = interval.day, day > 0 {
+      return day == 1 ? "\(day)" + " " + "day" :
+        "\(interval)" + " " + "days"
+    } else {
+      return "a moment ago"
+    }
   }
 }
