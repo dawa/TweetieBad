@@ -17,7 +17,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var screennameLabel: UILabel!
   @IBOutlet weak var profileImageView: UIImageView!
 
-  var tweet: Tweet!
+  var tweet: Tweet?
   var maxCharacters = 140
 
   override func viewDidLoad() {
@@ -26,18 +26,24 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     messageTextView.delegate = self
     self.automaticallyAdjustsScrollViewInsets = false
 
-    if let username = tweet.realName {
-      usernameLabel.text = username
-    }
+    if let tweet = tweet {
+      if let username = tweet.realName {
+        usernameLabel.text = username
+      }
 
-    if let screenname = tweet.screenName {
-      screennameLabel.text = "@\(screenname)"
-      messageTextView.text = "@\(screenname)"
-      placeholderLabel.isHidden = true
-    }
+      if let screenname = tweet.screenName {
+        screennameLabel.text = "@\(screenname)"
+        messageTextView.text = "@\(screenname)"
+        placeholderLabel.isHidden = true
+      }
 
-    if let profileImageUrl = tweet.profileImageUrl {
-      self.profileImageView.setImageWith(profileImageUrl)
+      if let profileImageUrl = tweet.profileImageUrl {
+        self.profileImageView.setImageWith(profileImageUrl)
+      }
+    } else {
+      profileImageView.isHidden = true
+      usernameLabel.isHidden = true
+      screennameLabel.isHidden = true
     }
   }
 
@@ -79,7 +85,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
       return
     }
 
-    TwitterClient.sharedInstance?.postTweet(tweet: messageTextView.text, id: tweet.id, success: { () -> () in
+    TwitterClient.sharedInstance?.postTweet(tweet: messageTextView.text, id: tweet?.id, success: { () -> () in
         self.dismiss(animated: true)
         return Void()
     }, failure: { (error: Error?) -> () in

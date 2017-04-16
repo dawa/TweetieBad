@@ -56,11 +56,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
   // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let navController = segue.destination as! UINavigationController
-    let destinationViewController = navController.topViewController as! TweetDetailViewController
-    let cell = sender as! MessageCell
-    let indexPath = tableView.indexPath(for: cell)!
-    destinationViewController.tweet = tweets![indexPath.row]
+    if (segue.identifier == "detailsSegue"){
+      let navController = segue.destination as! UINavigationController
+      let destinationViewController = navController.topViewController as! TweetDetailViewController
+      let cell = sender as! MessageCell
+      let indexPath = tableView.indexPath(for: cell)!
+      destinationViewController.tweet = tweets![indexPath.row]
+    }
   }
 
   func refreshControlAction(refreshControl: UIRefreshControl){
