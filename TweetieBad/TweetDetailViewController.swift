@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol TweetDetailViewControllerDelegate: class {
+  func tweetDetailViewController(tweetDetailViewController: TweetDetailViewController,
+                             didUpdateTweet tweet: Tweet)
+}
+
 class TweetDetailViewController: UIViewController {
 
   @IBOutlet weak var retweetedImageView: UIImageView!
@@ -25,6 +30,7 @@ class TweetDetailViewController: UIViewController {
   @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
 
   var tweet: Tweet!
+  weak var delegate: TweetDetailViewControllerDelegate?
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -119,6 +125,9 @@ class TweetDetailViewController: UIViewController {
         self.retweetCountLabel.text = "\(self.tweet.retweetCount) RETWEETS"
       }
 
+      // Let other view controllers know the tweet has been updated
+      self.delegate?.tweetDetailViewController(tweetDetailViewController: self, didUpdateTweet: self.tweet)
+
       return Void()
     }, failure: { (error: Error?) -> () in
       if let error = error {
@@ -154,6 +163,9 @@ class TweetDetailViewController: UIViewController {
         self.tweet.favoritesCount = self.tweet.favoritesCount - 1
         self.favoriteCountLabel.text = "\(self.tweet.favoritesCount) FAVORITES"
       }
+
+      // Let other view controllers know the tweet has been updated
+      self.delegate?.tweetDetailViewController(tweetDetailViewController: self, didUpdateTweet: self.tweet)
 
       return Void()
     }, failure: { (error: Error?) -> () in

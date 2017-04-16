@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetDetailViewControllerDelegate, UIScrollViewDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   var isMoreDataLoading = false
@@ -85,7 +85,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
       let cell = sender as! MessageCell
       let indexPath = tableView.indexPath(for: cell)!
       destinationViewController.tweet = tweets![indexPath.row]
+      destinationViewController.delegate = self
     }
+  }
+
+  func tweetDetailViewController(tweetDetailViewController: TweetDetailViewController, didUpdateTweet tweet: Tweet) {
+    if let index = tweets.index(of: tweet) {
+      // Update the tweet with new object
+      tweets[index] = tweet
+    } else {
+      // Prepend the new tweet
+      tweets.insert(tweet, at: 0)
+    }
+    tableView.reloadData()
   }
 
   func refreshControlAction(refreshControl: UIRefreshControl){
