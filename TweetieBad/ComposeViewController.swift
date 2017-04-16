@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ComposeViewControllerDelegate: class {
+  func composeViewController(composeViewController: ComposeViewController,
+                                 didCreateTweet tweet: Tweet)
+}
+
 class ComposeViewController: UIViewController, UITextViewDelegate {
 
   @IBOutlet weak var messageTextView: UITextView!
@@ -20,6 +25,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
 
   var tweet: Tweet?
   var maxCharacters = 140
+  weak var delegate: ComposeViewControllerDelegate?
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -96,13 +102,17 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
       return
     }
 
-    TwitterClient.sharedInstance?.postTweet(tweet: messageTextView.text, id: tweet?.id, success: { () -> () in
-        self.dismiss(animated: true)
-        return Void()
+    TwitterClient.sharedInstance?.postTweet(tweet: messageTextView.text, id: tweet?.id, success: { (tweet: Tweet) -> () in
+      self.dismiss(animated: true)
+
+      // Let other controllers know there is a new tweet created
+      self.delegate?.composeViewController(composeViewController: self, didCreateTweet: tweet)
+
+      return Void()
     }, failure: { (error: Error?) -> () in
-        if let error = error {
-          print(error.localizedDescription)
-        }
+      if let error = error {
+        print(error.localizedDescription)
+      }
     })
   }
 }

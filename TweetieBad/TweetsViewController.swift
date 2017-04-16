@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetDetailViewControllerDelegate, UIScrollViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetDetailViewControllerDelegate, ComposeViewControllerDelegate, UIScrollViewDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   var isMoreDataLoading = false
@@ -86,6 +86,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
       let indexPath = tableView.indexPath(for: cell)!
       destinationViewController.tweet = tweets![indexPath.row]
       destinationViewController.delegate = self
+    } else if (segue.identifier == "newSegue"){
+      let navController = segue.destination as! UINavigationController
+      let destinationViewController = navController.topViewController as! ComposeViewController
+      destinationViewController.delegate = self
     }
   }
 
@@ -97,6 +101,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
       // Prepend the new tweet
       tweets.insert(tweet, at: 0)
     }
+    tableView.reloadData()
+  }
+
+  func composeViewController(composeViewController: ComposeViewController, didCreateTweet tweet: Tweet) {
+    // Prepend the new tweet
+    tweets.insert(tweet, at: 0)
     tableView.reloadData()
   }
 

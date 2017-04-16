@@ -113,7 +113,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     })
   }
 
-  func postTweet(tweet: String, id: Int64?, success: @escaping () -> (), failure: @escaping (Error?) -> ()){
+  func postTweet(tweet: String, id: Int64?, success: @escaping (Tweet) -> (), failure: @escaping (Error?) -> ()){
     if (tweet.characters.count > 140 || tweet.characters.count == 0) {
       failure(nil)
       return
@@ -127,7 +127,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
 
     post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
-      success()
+      print("Tweet: \(response!)")
+      let tweetDictionary = response as! NSDictionary
+      let tweet = Tweet(dictionary: tweetDictionary)
+      success(tweet)
     }, failure: { (task: URLSessionDataTask?, error: Error) in
       failure(error)
     })
