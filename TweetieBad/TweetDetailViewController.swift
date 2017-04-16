@@ -22,6 +22,7 @@ class TweetDetailViewController: UIViewController {
   @IBOutlet weak var replyImageView: UIImageView!
   @IBOutlet weak var retweetImageView: UIImageView!
   @IBOutlet weak var favoriteImageView: UIImageView!
+  @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
 
   var tweet: Tweet!
 
@@ -43,10 +44,14 @@ class TweetDetailViewController: UIViewController {
     }
 
     if let retweetedByName = tweet.retweetedByName {
+      retweetedLabel.isHidden = false
+      retweetedImageView.isHidden = false
       retweetedLabel.text = "\(retweetedByName) retweeted"
+      profileImageViewTopConstraint.constant = 10
     } else {
       retweetedLabel.isHidden = true
       retweetedImageView.isHidden = true
+      profileImageViewTopConstraint.constant = -12
     }
 
     if let retweeted = tweet.retweeted {
@@ -106,12 +111,12 @@ class TweetDetailViewController: UIViewController {
         self.retweetImageView.image = UIImage(named: "retweeted")
         self.tweet.retweeted = true
         self.tweet.retweetCount = self.tweet.retweetCount + 1
-        self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+        self.retweetCountLabel.text = "\(self.tweet.retweetCount) RETWEETS"
       } else {
         self.retweetImageView.image = UIImage(named: "retweet")
         self.tweet.retweeted = false
         self.tweet.retweetCount = self.tweet.retweetCount - 1
-        self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+        self.retweetCountLabel.text = "\(self.tweet.retweetCount) RETWEETS"
       }
 
       return Void()
@@ -140,12 +145,12 @@ class TweetDetailViewController: UIViewController {
         self.favoriteImageView.image = UIImage(named: "heart")
         self.tweet.favorited = false
         self.tweet.favoritesCount = self.tweet.favoritesCount - 1
-        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount)"
+        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount) FAVORITES"
       } else {
         self.favoriteImageView.image = UIImage(named: "hearted")
         self.tweet.favorited = true
         self.tweet.favoritesCount = self.tweet.favoritesCount + 1
-        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount)"
+        self.favoriteCountLabel.text = "\(self.tweet.favoritesCount) FAVORITES"
       }
 
       return Void()

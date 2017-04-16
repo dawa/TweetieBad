@@ -20,6 +20,7 @@ class MessageCell: UITableViewCell {
   @IBOutlet weak var usernameLabel: UILabel!
   @IBOutlet weak var screennameLabel: UILabel!
   @IBOutlet weak var createAtLabel: UILabel!
+  @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
 
   var tweet: Tweet! {
     didSet {
@@ -50,10 +51,14 @@ class MessageCell: UITableViewCell {
       }
 
       if let retweetedByName = tweet.retweetedByName {
+        retweetedLabel.isHidden = false
+        retweetedImageView.isHidden = false
         retweetedLabel.text = "\(retweetedByName) retweeted"
+        profileImageViewTopConstraint.constant = 10
       } else {
         retweetedLabel.isHidden = true
         retweetedImageView.isHidden = true
+        profileImageViewTopConstraint.constant = -12
       }
 
       messagesLabel.text = tweet.text

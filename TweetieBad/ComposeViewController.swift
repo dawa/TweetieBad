@@ -16,6 +16,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var usernameLabel: UILabel!
   @IBOutlet weak var screennameLabel: UILabel!
   @IBOutlet weak var profileImageView: UIImageView!
+  @IBOutlet weak var profileImageViewTopConstraint: NSLayoutConstraint!
 
   var tweet: Tweet?
   var maxCharacters = 140
@@ -27,14 +28,23 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     self.automaticallyAdjustsScrollViewInsets = false
 
     if let tweet = tweet {
+      profileImageView.isHidden = false
+      usernameLabel.isHidden = false
+      screennameLabel.isHidden = false
+      profileImageViewTopConstraint.constant = -12
+
       if let username = tweet.realName {
         usernameLabel.text = username
       }
 
       if let screenname = tweet.screenName {
-        screennameLabel.text = "@\(screenname)"
-        messageTextView.text = "@\(screenname)"
+        let screennameText = "@\(screenname)"
+        screennameLabel.text = screennameText
+        messageTextView.text = screennameText
+        maxCharacters = 140 - screennameText.characters.count
+        charactersLeftLabel.text = "\(maxCharacters)"
         placeholderLabel.isHidden = true
+        profileImageViewTopConstraint.constant = 10
       }
 
       if let profileImageUrl = tweet.profileImageUrl {
@@ -44,6 +54,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
       profileImageView.isHidden = true
       usernameLabel.isHidden = true
       screennameLabel.isHidden = true
+      profileImageViewTopConstraint.constant = -55
     }
   }
 
