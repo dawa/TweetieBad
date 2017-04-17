@@ -53,7 +53,6 @@ class TwitterClient: BDBOAuth1SessionManager {
 
   func homeTimeline(parameters: [String : AnyObject]? = nil, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
     get("1.1/statuses/home_timeline.json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
-      //print("Timeline: \(response!)")
       let dictionaries = response as! [NSDictionary]
       let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
       success(tweets)
@@ -64,7 +63,6 @@ class TwitterClient: BDBOAuth1SessionManager {
 
   func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
     get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
-      //print("Account: \(response!)")
       let userDictionary = response as! NSDictionary
       let user = User(dictionary: userDictionary)
       success(user)
@@ -127,7 +125,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
 
     post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
-      print("Tweet: \(response!)")
       let tweetDictionary = response as! NSDictionary
       let tweet = Tweet(dictionary: tweetDictionary)
       success(tweet)
