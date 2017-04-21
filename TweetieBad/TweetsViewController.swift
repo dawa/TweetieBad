@@ -11,6 +11,7 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetDetailViewControllerDelegate, ComposeViewControllerDelegate, UIScrollViewDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+
   var isMoreDataLoading = false
   var tweets: [Tweet]!
   var maxId: Int64?
@@ -27,6 +28,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     tableView.dataSource = self
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 220
+
 
     // Infinite Scrolling
     let tableFooterView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
