@@ -15,6 +15,8 @@ class HamburgerViewController: UIViewController {
   @IBOutlet weak var leftMarginConstraint: NSLayoutConstraint!
 
   var originalLeftMargin: CGFloat!
+  var contentViewWidth: CGFloat!
+
   var menuViewController: UIViewController! {
     didSet(oldContentViewController) {
 
@@ -54,6 +56,7 @@ class HamburgerViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    contentViewWidth = self.view.frame.size.width
 
     // Do any additional setup after loading the view.
   }
@@ -75,7 +78,7 @@ class HamburgerViewController: UIViewController {
       UIView.animate(withDuration: 0.3, animations: {
         if velocity.x > 0 {
           // Opening menu
-          self.leftMarginConstraint.constant = self.view.frame.size.width - 50
+          self.leftMarginConstraint.constant = self.contentViewWidth/2
         } else {
           // Closing
           self.leftMarginConstraint.constant = 0

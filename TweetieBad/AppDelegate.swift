@@ -18,33 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+    let hamburgerViewController = window!.rootViewController as! HamburgerViewController
+    let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+
+    menuViewController.hamburgerViewController = hamburgerViewController
+    hamburgerViewController.menuViewController = menuViewController
 
     if User.currentUser == nil {
-      let hamburgerViewController = window!.rootViewController as! HamburgerViewController
-      let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-
-      menuViewController.hamburgerViewController = hamburgerViewController
-      hamburgerViewController.menuViewController = menuViewController
-
-    } else {
-      let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-      window?.rootViewController = vc
+      let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+      window?.rootViewController = loginViewController
     }
-
-    /*
-    if User.currentUser != nil {
-      let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-      let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-
-      window?.rootViewController = vc
-    }*/
 
     NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
       let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-      let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-      //let vc = storyboard.instantiateInitialViewController()
+      let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
 
-      self.window?.rootViewController = vc
+      self.window?.rootViewController = loginViewController
     }
 
     return true
