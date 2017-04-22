@@ -30,11 +30,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Instantiate the navigation controllers and add them to the array
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
-    timelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-    mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "MentionsNavigationController")
-
     viewControllers.append(profileNavigationController)
+
+    timelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
     viewControllers.append(timelineNavigationController)
+
+    mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+    let tweetsViewController = mentionsNavigationController.childViewControllers.first as! TweetsViewController
+    tweetsViewController.mentionsTimeline = true
     viewControllers.append(mentionsNavigationController)
 
     hamburgerViewController.contentViewController = timelineNavigationController

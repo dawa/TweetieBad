@@ -15,6 +15,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
   var isMoreDataLoading = false
   var tweets: [Tweet]!
   var maxId: Int64?
+  var mentionsTimeline = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,7 +39,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     tableFooterView.addSubview(loadingView)
     self.tableView.tableFooterView = tableFooterView
 
-    homeTimeline()
+    timeLine()
   }
 
   override func didReceiveMemoryWarning() {
@@ -57,26 +58,42 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     return cell
   }
 
-  func homeTimeline() {
+  func timeLine() {
     var parameters: [String : AnyObject] = [String : AnyObject]()
 
     if maxId != nil {
       parameters["max_id"] = maxId as AnyObject?
     }
 
-    TwitterClient.sharedInstance?.homeTimeline(parameters: parameters, success: { (tweets: [Tweet]) in
-      // If scrolling add the contents to the tweets array otherwise reloading
-      if self.maxId == nil {
-        self.tweets = tweets
-      } else {
-        self.tweets.append(contentsOf: tweets)
-      }
+    if mentionsTimeline == true {
+      TwitterClient.sharedInstance?.mentionsTimeline(parameters: parameters, success: { (tweets: [Tweet]) in
+        // If scrolling add the contents to the tweets array otherwise reloading
+        if self.maxId == nil {
+          self.tweets = tweets
+        } else {
+          self.tweets.append(contentsOf: tweets)
+        }
 
-      self.isMoreDataLoading = false
-      self.tableView.reloadData()
-    }, failure: { (error: Error) in
-      print("error: \(error.localizedDescription)")
-    })
+        self.isMoreDataLoading = false
+        self.tableView.reloadData()
+      }, failure: { (error: Error) in
+        print("error: \(error.localizedDescription)")
+      })
+    } else {
+      TwitterClient.sharedInstance?.homeTimeline(parameters: parameters, success: { (tweets: [Tweet]) in
+        // If scrolling add the contents to the tweets array otherwise reloading
+        if self.maxId == nil {
+          self.tweets = tweets
+        } else {
+          self.tweets.append(contentsOf: tweets)
+        }
+
+        self.isMoreDataLoading = false
+        self.tableView.reloadData()
+      }, failure: { (error: Error) in
+        print("error: \(error.localizedDescription)")
+      })
+    }
   }
 
   // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -121,7 +138,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
   }
 
   func refreshControlAction(refreshControl: UIRefreshControl){
-    homeTimeline()
+    timeLine()
     refreshControl.endRefreshing()
   }
 
@@ -139,7 +156,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
           self.maxId = maxId - 1
         }
 
-        homeTimeline()
+        timeLine()
       }
     }
   }

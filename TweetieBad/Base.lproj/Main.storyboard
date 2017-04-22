@@ -210,7 +210,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 FOLLOWING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSz-wl-hdk">
-                                <rect key="frame" x="140.5" y="317" width="94.5" height="16"/>
+                                <rect key="frame" x="95" y="317" width="94.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -239,7 +239,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JSz-wl-hdk" firstAttribute="centerX" secondItem="cye-KT-YfI" secondAttribute="centerX" id="210-pp-sRh"/>
                             <constraint firstItem="lFT-6o-6qA" firstAttribute="leading" secondItem="cye-KT-YfI" secondAttribute="leading" id="28c-xW-zkl"/>
                             <constraint firstItem="VU2-4q-qA1" firstAttribute="leading" secondItem="GZl-LQ-slK" secondAttribute="leading" id="2HT-Po-oc8"/>
                             <constraint firstItem="oK6-mL-vtn" firstAttribute="baseline" secondItem="ClG-31-IIT" secondAttribute="baseline" id="4ac-YA-KCX"/>
@@ -259,6 +258,7 @@
                             <constraint firstItem="GOV-GK-kSi" firstAttribute="leading" secondItem="cye-KT-YfI" secondAttribute="leading" id="ki2-tP-Rd8"/>
                             <constraint firstItem="ClG-31-IIT" firstAttribute="leading" secondItem="GZl-LQ-slK" secondAttribute="leading" id="tCk-N0-fXi"/>
                             <constraint firstAttribute="trailing" secondItem="G6l-sk-0EX" secondAttribute="trailing" id="toC-eH-46M"/>
+                            <constraint firstItem="JSz-wl-hdk" firstAttribute="leading" secondItem="ClG-31-IIT" secondAttribute="trailing" constant="10" id="u4Q-l6-OA4"/>
                             <constraint firstItem="GZl-LQ-slK" firstAttribute="top" secondItem="G6l-sk-0EX" secondAttribute="bottom" constant="-20" id="vnd-Xh-SLy"/>
                             <constraint firstItem="G6l-sk-0EX" firstAttribute="top" secondItem="53M-hY-oHV" secondAttribute="bottom" id="w4U-L4-vyW"/>
                         </constraints>
@@ -278,25 +278,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBj-1e-Ocq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="2023.5382308845578"/>
-        </scene>
-        <!--Mentions View Controller-->
-        <scene sceneID="f1j-0W-hHV">
-            <objects>
-                <viewController storyboardIdentifier="MentionsViewController" id="XpU-Sb-5Cn" customClass="MentionsViewController" customModule="TweetieBad" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KGk-DF-pR3"/>
-                        <viewControllerLayoutGuide type="bottom" id="f7T-Xj-OlQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Zs9-i6-iyj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Izh-F2-8NC"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ncd-wO-V7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="844" y="2024"/>
         </scene>
         <!--Home-->
         <scene sceneID="qdB-bB-kQG">
@@ -843,9 +824,10 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="zm8-b5-kYh" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XHY-bj-UGz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XHY-bj-UGz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.25486227750000001" green="0.75833537269999995" blue="0.99668069950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -857,31 +839,14 @@
             <point key="canvasLocation" x="136.80000000000001" y="1145.577211394303"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="woY-Ka-Skf">
-            <objects>
-                <navigationController storyboardIdentifier="MentionsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="k4f-hk-zuc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LJx-8k-CY7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="XpU-Sb-5Cn" kind="relationship" relationship="rootViewController" id="dA3-Oe-53b"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IEz-Ip-FYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="844" y="1146"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="OHG-qG-WIa">
             <objects>
                 <navigationController storyboardIdentifier="MenuNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="XPU-T9-fdI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dBm-Ok-JJG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dBm-Ok-JJG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.25486227750000001" green="0.75833537269999995" blue="0.99668069950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

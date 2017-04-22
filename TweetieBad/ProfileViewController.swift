@@ -88,7 +88,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
 
-    //cell.tweet = tweets[indexPath.row]
+    cell.tweet = tweets[indexPath.row]
     return cell
   }
 }

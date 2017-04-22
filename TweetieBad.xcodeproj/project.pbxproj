@@ -19,7 +19,6 @@
 		3172F36E1EA0B83500284B77 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3172F36D1EA0B83500284B77 /* MessageCell.swift */; };
 		3172F3701EA3080E00284B77 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3172F36F1EA3080E00284B77 /* TweetDetailViewController.swift */; };
 		3172F3721EA328C200284B77 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3172F3711EA328C200284B77 /* ComposeViewController.swift */; };
-		31DFA7D31EA9BDF300A37D37 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DFA7D21EA9BDF300A37D37 /* MentionsViewController.swift */; };
 		31DFA7D51EA9C19C00A37D37 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DFA7D41EA9C19C00A37D37 /* MenuViewController.swift */; };
 		31DFA7D71EA9C20C00A37D37 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DFA7D61EA9C20C00A37D37 /* MenuCell.swift */; };
 		31DFA7DB1EA9C77C00A37D37 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DFA7DA1EA9C77C00A37D37 /* HamburgerViewController.swift */; };
@@ -43,7 +42,6 @@
 		3172F36D1EA0B83500284B77 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		3172F36F1EA3080E00284B77 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		3172F3711EA328C200284B77 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
-		31DFA7D21EA9BDF300A37D37 /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
 		31DFA7D41EA9C19C00A37D37 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		31DFA7D61EA9C20C00A37D37 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		31DFA7DA1EA9C77C00A37D37 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				3172F36A1EA0B63F00284B77 /* TweetsViewController.swift */,
 				3172F36F1EA3080E00284B77 /* TweetDetailViewController.swift */,
 				3172F3711EA328C200284B77 /* ComposeViewController.swift */,
-				31DFA7D21EA9BDF300A37D37 /* MentionsViewController.swift */,
 				31DFA7D41EA9C19C00A37D37 /* MenuViewController.swift */,
 				31DFA7DA1EA9C77C00A37D37 /* HamburgerViewController.swift */,
 				31DFA7DC1EAA6A0900A37D37 /* ProfileViewController.swift */,
@@ -288,7 +285,6 @@
 				3172F35C1EA07E3B00284B77 /* LoginViewController.swift in Sources */,
 				3172F36B1EA0B63F00284B77 /* TweetsViewController.swift in Sources */,
 				31DFA7DD1EAA6A0900A37D37 /* ProfileViewController.swift in Sources */,
-				31DFA7D31EA9BDF300A37D37 /* MentionsViewController.swift in Sources */,
 				3172F34A1EA07C9C00284B77 /* AppDelegate.swift in Sources */,
 				31DFA7DB1EA9C77C00A37D37 /* HamburgerViewController.swift in Sources */,
 				3172F3611EA096A400284B77 /* User.swift in Sources */,
