@@ -46,7 +46,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3 //viewControllers.count
+    return viewControllers.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

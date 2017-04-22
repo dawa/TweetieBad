@@ -8,28 +8,77 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  @IBOutlet weak var backgroundImageView: UIImageView!
+  @IBOutlet weak var profileImageView: UIImageView!
+  @IBOutlet weak var usernameLabel: UILabel!
+  @IBOutlet weak var screennameLabel: UILabel!
+  @IBOutlet weak var tweetsLabel: UILabel!
+  @IBOutlet weak var followersLabel: UILabel!
+  @IBOutlet weak var followingLabel: UILabel!
+  @IBOutlet weak var tableView: UITableView!
 
-        // Do any additional setup after loading the view.
+  var user: User!
+  var tweets: [Tweet]!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.dataSource = self
+    tableView.delegate = self
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 220
+    tableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
+
+    user = User.currentUser!
+    profile()
+  }
+
+  func profile() {
+    TwitterClient.sharedInstance?.userTimeline(screen_name: user.screenname!, success: { (tweets: [Tweet]) in
+        self.tweets = tweets
+        self.tableView.reloadData()
+    }, failure: { (error: Error) in
+      print("error: \(error.localizedDescription)")
+    })
+
+    usernameLabel.text = user.name
+    screennameLabel.text = "@\(user.screenname!)"
+
+    if user.profileUrl != nil {
+      profileImageView.setImageWith(user.profileUrl!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    if user.bannerUrl != nil {
+      backgroundImageView.setImageWith(user.bannerUrl!)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    if user.followersCount != nil {
+      followersLabel.text = "\(user.followersCount!) FOLLOWERS"
     }
-    */
 
+    if user.followingCount != nil {
+      followingLabel.text = "\(user.followingCount!) FOLLOWING"
+    }
+
+    if user.statusesCount != nil {
+      tweetsLabel.text = "\(user.statusesCount!) TWEETS"
+    }
+  }
+
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return tweets == nil ? 0 : tweets!.count
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
+
+    cell.tweet = tweets[indexPath.row]
+    return cell
+  }
 }

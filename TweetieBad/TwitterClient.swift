@@ -132,4 +132,38 @@ class TwitterClient: BDBOAuth1SessionManager {
       failure(error)
     })
   }
+
+  func mentionsTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+    get("1.1/statuses/mentions_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+      let dictionaries = response as! [NSDictionary]
+      let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+      success(tweets)
+    }, failure: { (task: URLSessionDataTask?, error: Error) in
+      failure(error)
+    })
+  }
+
+  func userShow(screen_name: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
+    let params = ["screen_name": screen_name]
+
+    get("1.1/users/show.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+      let userDictionary = response as! NSDictionary
+      let user = User(dictionary: userDictionary)
+      success(user)
+    }, failure: { (task: URLSessionDataTask?, error: Error) in
+      failure(error)
+    })
+  }
+
+  func userTimeline(screen_name: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
+    let params = ["screen_name": screen_name, "count": 200, "include_rts": 1] as [String : Any]
+
+    get("1.1/statuses/user_timeline.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+      let dictionaries = response as! [NSDictionary]
+      let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+      success(tweets)
+    }, failure: { (task: URLSessionDataTask?, error: Error) in
+      failure(error)
+    })
+  }
 }

@@ -72,6 +72,7 @@ class MessageCell: UITableViewCell {
   override func awakeFromNib() {
       super.awakeFromNib()
       // Initialization code
+      //initSubviews()
       profileImageView?.layer.cornerRadius = 3
   }
 
@@ -79,6 +80,15 @@ class MessageCell: UITableViewCell {
       super.setSelected(selected, animated: animated)
 
       // Configure the view for the selected state
+  }
+
+  func initSubviews() {
+    let nib = UINib(nibName: "MessageCell", bundle: nil)
+    nib.instantiate(withOwner: self, options: nil)
+    contentView.frame = bounds
+    imageView?.contentMode = .scaleAspectFill
+    imageView?.clipsToBounds = true
+    addSubview(contentView)
   }
 }
 
