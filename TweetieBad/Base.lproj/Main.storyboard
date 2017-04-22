@@ -172,17 +172,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G6l-sk-0EX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="149" id="VM5-e8-1Zg"/>
+                                </constraints>
+                            </imageView>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GZl-LQ-slK">
                                 <rect key="frame" x="10" y="193" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="g0D-Yz-jaH"/>
                                     <constraint firstAttribute="height" constant="64" id="nl8-de-ex2"/>
-                                </constraints>
-                            </imageView>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G6l-sk-0EX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="149"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="149" id="VM5-e8-1Zg"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-HO-mcl">
@@ -327,12 +327,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fW2-Wi-qmE">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fW2-Wi-qmE">
                                                     <rect key="frame" x="10" y="31" width="64" height="64"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="ZOv-sp-QYB"/>
                                                         <constraint firstAttribute="width" constant="64" id="uPq-nD-iPo"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="meH-rM-FfH" appends="YES" id="q0z-S4-vNe"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe retweeted" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-jB-rAj">
                                                     <rect key="frame" x="56" y="5" width="114" height="15"/>
@@ -456,9 +460,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="1Fm-S7-6OD" id="UUz-4W-JBH"/>
+                        <segue destination="yRI-pV-tBq" kind="presentation" identifier="profileSegue" id="8lo-ZT-CAC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQY-Du-Rqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="meH-rM-FfH">
+                    <connections>
+                        <action selector="onTapProfile:" destination="ehf-Kj-jsz" id="gvG-hp-kAl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1639" y="143"/>
         </scene>
@@ -785,7 +795,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTa-t4-yiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="143"/>
+            <point key="canvasLocation" x="1638" y="-732"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pO3-7G-rId">
@@ -888,6 +898,7 @@
         <image name="retweeted" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="8lo-ZT-CAC"/>
         <segue reference="NvG-zD-NrP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -92,6 +92,18 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
       let navController = segue.destination as! UINavigationController
       let destinationViewController = navController.topViewController as! ComposeViewController
       destinationViewController.delegate = self
+    } else if(segue.identifier == "profileSegue"){
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
+
+      let cell = sender as! MessageCell
+      let indexPath = tableView.indexPath(for: cell)!
+      let tweet = tweets![indexPath.row]
+      let destinationViewController = profileNavigationController.topViewController as! ProfileViewController
+      destinationViewController.screenName = tweet.screenName
+
+      let hamburgerViewController = segue.destination as! HamburgerViewController
+      hamburgerViewController.contentViewController = profileNavigationController
     }
   }
 
@@ -138,5 +150,18 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
   @IBAction func onLogoutButton(_ sender: Any) {
     TwitterClient.sharedInstance?.logout()
+  }
+
+  @IBAction func onTapProfile(_ sender: UITapGestureRecognizer) {
+    let imageView = sender.view as! UIImageView
+    let cell = imageView.superview!.superview as! MessageCell //(of: MessageCell())
+
+    self.performSegue(withIdentifier: "profileSegue", sender: cell)
+  }
+}
+
+extension UIView {
+  func superview<T>(of type: T.Type) -> T? {
+    return superview as? T ?? superview.flatMap { $0.superview(of: T.self) }
   }
 }

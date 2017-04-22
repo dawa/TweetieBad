@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
   var user: User!
   var tweets: [Tweet]!
+  var screenName: String?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,8 +31,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     tableView.estimatedRowHeight = 220
     tableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
 
-    user = User.currentUser!
-    profile()
+    if screenName != nil {
+      TwitterClient.sharedInstance?.userShow(screen_name: screenName!, success: { (user: User) in
+        self.user = user
+        self.profile()
+      }, failure: { (error: Error) in
+        print("error: \(error.localizedDescription)")
+      })
+    } else {
+      user = User.currentUser!
+      profile()
+    }
   }
 
   func profile() {
@@ -78,7 +88,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
 
-    cell.tweet = tweets[indexPath.row]
+    //cell.tweet = tweets[indexPath.row]
     return cell
   }
 }
