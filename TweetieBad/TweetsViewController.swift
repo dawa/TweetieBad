@@ -93,17 +93,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
       let destinationViewController = navController.topViewController as! ComposeViewController
       destinationViewController.delegate = self
     } else if(segue.identifier == "profileSegue"){
-      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
+      let navController = segue.destination as! UINavigationController
+      let destinationViewController = navController.topViewController as! ProfileViewController
 
       let cell = sender as! MessageCell
       let indexPath = tableView.indexPath(for: cell)!
       let tweet = tweets![indexPath.row]
-      let destinationViewController = profileNavigationController.topViewController as! ProfileViewController
       destinationViewController.screenName = tweet.screenName
-
-      let hamburgerViewController = segue.destination as! HamburgerViewController
-      hamburgerViewController.contentViewController = profileNavigationController
     }
   }
 

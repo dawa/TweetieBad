@@ -460,7 +460,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="1Fm-S7-6OD" id="UUz-4W-JBH"/>
-                        <segue destination="yRI-pV-tBq" kind="presentation" identifier="profileSegue" id="8lo-ZT-CAC"/>
+                        <segue destination="zm8-b5-kYh" kind="presentation" identifier="profileSegue" id="1AF-pa-8t8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQY-Du-Rqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -898,7 +898,6 @@
         <image name="retweeted" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8lo-ZT-CAC"/>
         <segue reference="NvG-zD-NrP"/>
     </inferredMetricsTieBreakers>
 </document>
