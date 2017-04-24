@@ -84,4 +84,33 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
       print("error: \(error.localizedDescription)")
     })
   }
+
+  @IBAction func didPanAccount(_ sender: UIPanGestureRecognizer) {
+    let velocity = sender.velocity(in: view)
+
+    if sender.state == .began {
+
+    } else if sender.state == .changed {
+
+    } else if sender.state == .ended {
+      if velocity.x > 0 {
+        let account = sender.view as! AccountCell
+        UIView.animate(withDuration: 0.3) {
+          // Remove the user's account
+          if let index = self.users?.index(of: account.user) {
+            self.users?.remove(at: index)
+            User.userAccounts = self.users
+          }
+
+          if account.user == User.currentUser {
+            User.currentUser = nil
+          }
+
+          account.removeFromSuperview()
+
+          self.tableView.reloadData()
+        }
+      }
+    }
+  }
 }

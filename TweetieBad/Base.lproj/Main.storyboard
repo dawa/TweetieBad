@@ -835,10 +835,12 @@
                                                 <constraint firstItem="flf-J9-bdf" firstAttribute="top" secondItem="Zqn-bs-vgP" secondAttribute="bottom" constant="10" id="WZI-Jc-4gw"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="profileImageView" destination="Zqn-bs-vgP" id="NUM-4C-PUk"/>
                                             <outlet property="screennameLabel" destination="oCm-69-ANP" id="jzV-MF-a5d"/>
                                             <outlet property="usernameLabel" destination="flf-J9-bdf" id="D1t-ds-CSF"/>
+                                            <outletCollection property="gestureRecognizers" destination="7Jk-bu-qUj" appends="YES" id="CtV-9C-v1X"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -858,6 +860,11 @@
                         <action selector="onTapProfile:" destination="ClT-H3-gGc" id="IhD-We-8gJ"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="7Jk-bu-qUj">
+                    <connections>
+                        <action selector="didPanAccount:" destination="ClT-H3-gGc" id="VVn-bd-SzS"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3285.5999999999999" y="2023.5382308845578"/>
         </scene>
