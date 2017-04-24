@@ -31,14 +31,13 @@ class LoginViewController: UIViewController {
     })
   }
 
-    /*
-    // MARK: - Navigation
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let hamburgerViewController = segue.destination as! HamburgerViewController
+    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+    let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    menuViewController.hamburgerViewController = hamburgerViewController
+    hamburgerViewController.menuViewController = menuViewController
+  }
 }

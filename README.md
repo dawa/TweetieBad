@@ -1,6 +1,6 @@
 # Project 4 - TweetieBad Redux
 
-Time spent: 14 hours spent in total
+Time spent: 16 hours spent in total
 
 ## User Stories
 
@@ -22,9 +22,9 @@ The following **optional** features are implemented:
    - [ ] Implement the paging view for the user description.
    - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
    - [ ] Pulling down the profile page should blur and resize the header image.
-- [ ] Account switching
+- [x] Account switching
    - [ ] Long press on tab bar to bring up Account view with animation
-   - [ ] Tap account to switch to
+   - [x] Tap account to switch to
    - [ ] Include a plus button to Add an Account
    - [ ] Swipe to delete an account
 

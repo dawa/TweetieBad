@@ -75,4 +75,43 @@ class User: NSObject {
     }
   }
 
+  static var _accounts: [User]?
+  //static var userAccounts = [User]()
+
+  class var userAccounts: [User]? {
+    get {
+      if _accounts == nil {
+        let defaults = UserDefaults.standard
+        let accountsData = defaults.object(forKey: "accountsData") as? Data
+
+        if let accountsData = accountsData,
+          let dictionary = try? JSONSerialization.jsonObject(with: accountsData as Data, options: []) {
+            let users = dictionary as! [NSDictionary]
+          for user in users {
+            _accounts?.append(User(dictionary: user))
+          }
+        }
+      }
+      return _accounts
+    }
+
+    set(accounts) {
+      _accounts = accounts
+
+      let defaults = UserDefaults.standard
+      if let accounts = accounts {
+        var accountsData = [Data]()
+        for user in accounts {
+          if let item = try? JSONSerialization.data(withJSONObject: user.dictionary!, options: []) {
+            accountsData.append(item)
+          }
+        }
+        defaults.set(accountsData, forKey: "accountsData")
+      } else {
+        defaults.removeObject(forKey: "accountsData")
+      }
+
+      defaults.synchronize()
+    }
+  }
 }

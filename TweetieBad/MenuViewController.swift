@@ -15,17 +15,19 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
   private var profileNavigationController: UIViewController!
   private var timelineNavigationController: UIViewController!
   private var mentionsNavigationController: UIViewController!
+  private var accountsNavigationController: UIViewController!
 
   var viewControllers: [UIViewController] = []
   var hamburgerViewController: HamburgerViewController!
 
-  let titles = ["Profile", "Timeline", "Mentions"]
+  let titles = ["Profile", "Timeline", "Mentions", "Accounts"]
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.rowHeight = 165
 
     // Instantiate the navigation controllers and add them to the array
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -39,6 +41,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let tweetsViewController = mentionsNavigationController.childViewControllers.first as! TweetsViewController
     tweetsViewController.mentionsTimeline = true
     viewControllers.append(mentionsNavigationController)
+
+    accountsNavigationController = storyboard.instantiateViewController(withIdentifier: "AccountsNavigationController")
+    viewControllers.append(accountsNavigationController)
 
     hamburgerViewController.contentViewController = timelineNavigationController
   }

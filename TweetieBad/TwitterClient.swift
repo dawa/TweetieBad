@@ -42,6 +42,18 @@ class TwitterClient: BDBOAuth1SessionManager {
     fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: {(accessToken: BDBOAuth1Credential!) -> Void in
       self.currentAccount(success: { (user: User) in
         User.currentUser = user
+        if let index = User.userAccounts?.index(of: user) {
+          User.userAccounts?[index] = user
+        } else {
+          var accounts = [User]()
+          if let userAccounts = User.userAccounts {
+            accounts.append(user)
+            User.userAccounts = accounts + userAccounts
+          } else {
+            accounts.append(user)
+            User.userAccounts = accounts
+          }
+        }
         self.loginSuccess?()
       }, failure: { (error: Error) in
         self.loginFailure?(error)
