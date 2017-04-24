@@ -25,7 +25,7 @@ The following **optional** features are implemented:
 - [x] Account switching
    - [x] Long press on tab bar to bring up Account view with animation
    - [x] Tap account to switch to
-   - [ ] Include a plus button to Add an Account
+   - [x] Include a plus button to Add an Account
    - [ ] Swipe to delete an account
 
 

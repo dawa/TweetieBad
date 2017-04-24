@@ -30,6 +30,13 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
     plusView.center = tableFooterView.center
     tableFooterView.addSubview(plusView)
     self.tableView.tableFooterView = tableFooterView
+
+    // Add gesture recognizer to the account button
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPlusButton(sender:)))
+
+    // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
+    plusView.isUserInteractionEnabled = true
+    plusView.addGestureRecognizer(tapGestureRecognizer)
   }
 
   override func didReceiveMemoryWarning() {
@@ -63,5 +70,18 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
     User.currentUser = cell.user
 
     self.performSegue(withIdentifier: "accountsSegue", sender: cell)
+  }
+
+  func didTapPlusButton(sender: UITapGestureRecognizer) {
+    TwitterClient.sharedInstance?.logout()
+    TwitterClient.sharedInstance?.login(success: {
+//      let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//      let accountsViewController = storyboard.instantiateViewController(withIdentifier: "AccountsViewController")
+//
+//      self.navigationController?.pushViewController(accountsViewController, animated: true)
+      self.dismiss(animated: true, completion: nil)
+    }, failure: { (error: Error) in
+      print("error: \(error.localizedDescription)")
+    })
   }
 }
