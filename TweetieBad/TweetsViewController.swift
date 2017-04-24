@@ -171,6 +171,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     self.performSegue(withIdentifier: "profileSegue", sender: cell)
   }
+
+  @IBAction func onLongPressAccounts(_ sender: UILongPressGestureRecognizer) {
+    self.performSegue(withIdentifier: "homeAccountsSegue", sender: nil)
+  }
 }
 
 extension UIView {

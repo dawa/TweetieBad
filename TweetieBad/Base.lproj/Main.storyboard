@@ -293,7 +293,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Fm-S7-6OD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="142" id="o3n-BI-p3a" customClass="MessageCell" customModule="TweetieBad" customModuleProvider="target">
@@ -417,12 +417,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NK7-Zv-vEc">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <items>
+                                    <tabBarItem title="Accounts" image="accounts" id="Cqn-R7-pma"/>
+                                    <tabBarItem systemItem="more" id="17s-ld-SP2"/>
+                                </items>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vl0-BC-h1G" appends="YES" id="CEG-Ue-IqQ"/>
+                                </connections>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ADg-k9-s6y" firstAttribute="top" secondItem="NK7-Zv-vEc" secondAttribute="bottom" id="8jJ-8R-khX"/>
                             <constraint firstItem="1Fm-S7-6OD" firstAttribute="top" secondItem="F1o-bn-enm" secondAttribute="bottom" constant="-64" id="DUx-ey-8Yk"/>
+                            <constraint firstAttribute="trailing" secondItem="NK7-Zv-vEc" secondAttribute="trailing" id="HFV-py-SDW"/>
                             <constraint firstItem="1Fm-S7-6OD" firstAttribute="leading" secondItem="ITO-F5-K1V" secondAttribute="leading" id="Msk-mz-YfH"/>
-                            <constraint firstItem="ADg-k9-s6y" firstAttribute="top" secondItem="1Fm-S7-6OD" secondAttribute="bottom" id="fjX-jf-dME"/>
+                            <constraint firstItem="NK7-Zv-vEc" firstAttribute="leading" secondItem="ITO-F5-K1V" secondAttribute="leading" id="clv-RF-6W1"/>
+                            <constraint firstItem="NK7-Zv-vEc" firstAttribute="top" secondItem="1Fm-S7-6OD" secondAttribute="bottom" id="dea-pZ-API"/>
                             <constraint firstAttribute="trailing" secondItem="1Fm-S7-6OD" secondAttribute="trailing" id="vVg-rE-ATo"/>
                         </constraints>
                     </view>
@@ -443,6 +458,7 @@
                     <connections>
                         <outlet property="tableView" destination="1Fm-S7-6OD" id="UUz-4W-JBH"/>
                         <segue destination="zm8-b5-kYh" kind="presentation" identifier="profileSegue" id="1AF-pa-8t8"/>
+                        <segue destination="1nx-5Q-tFP" kind="presentation" identifier="homeAccountsSegue" id="XkJ-9R-H6C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQY-Du-Rqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -451,8 +467,13 @@
                         <action selector="onTapProfile:" destination="ehf-Kj-jsz" id="gvG-hp-kAl"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vl0-BC-h1G">
+                    <connections>
+                        <action selector="onLongPressAccounts:" destination="ehf-Kj-jsz" id="O7m-SF-KwR"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1639" y="143"/>
+            <point key="canvasLocation" x="1637.5999999999999" y="142.57871064467767"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="s99-bd-Bk9">
@@ -963,6 +984,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="accounts" width="48" height="48"/>
         <image name="reply" width="32" height="32"/>
         <image name="retweeted" width="32" height="32"/>
     </resources>
