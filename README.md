@@ -1,6 +1,6 @@
 # Project 4 - TweetieBad Redux
 
-Time spent: 16 hours spent in total
+Time spent: 19 hours spent in total
 
 ## User Stories
 

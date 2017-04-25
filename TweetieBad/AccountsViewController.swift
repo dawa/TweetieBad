@@ -12,7 +12,8 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
 
   @IBOutlet weak var tableView: UITableView!
 
-  var users: [User]?
+  var users: [User]!
+  var originalLocation: CGPoint!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,7 +23,7 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 220
 
-    users = User.userAccounts
+    users = Array(User.userAccounts.values)
     
     // Add account button
     let tableFooterView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
@@ -87,28 +88,28 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
 
   @IBAction func didPanAccount(_ sender: UIPanGestureRecognizer) {
     let velocity = sender.velocity(in: view)
+    let translation = sender.translation(in: view)
+    let account = sender.view as! AccountCell
 
     if sender.state == .began {
-
+      originalLocation = account.center
     } else if sender.state == .changed {
-
+      UIView.animate(withDuration: 0.5, animations: {
+        account.center.x = self.originalLocation.x + translation.x
+        account.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+      })
     } else if sender.state == .ended {
       if velocity.x > 0 {
-        let account = sender.view as! AccountCell
         UIView.animate(withDuration: 0.3) {
           // Remove the user's account
-          if let index = self.users?.index(of: account.user) {
-            self.users?.remove(at: index)
-            User.userAccounts = self.users
+          User.delete(user: account.user)
+          if User.userAccounts.isEmpty == true {
+            TwitterClient.sharedInstance?.logout()
+          } else {
+            self.users = Array(User.userAccounts.values)
+            account.removeFromSuperview()
+            self.tableView.reloadData()
           }
-
-          if account.user == User.currentUser {
-            User.currentUser = nil
-          }
-
-          account.removeFromSuperview()
-
-          self.tableView.reloadData()
         }
       }
     }

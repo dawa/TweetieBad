@@ -44,74 +44,78 @@ class User: NSObject {
 
   static let userDidLogoutNotification = "UserDidLogout"
 
+  static var userAccounts = [String: User]()
   static var _currentUser: User?
 
-  class var currentUser: User? {
+  class var currentUser: User?{
     get {
       if _currentUser == nil {
+        if userAccounts.isEmpty == true {
+          print("no users")
+        }
         let defaults = UserDefaults.standard
-        let userData = defaults.object(forKey: "currentUserData") as? Data
 
-        if let userData = userData,
-          let dictionary = try? JSONSerialization.jsonObject(with: userData as Data, options: []) {
-          _currentUser = User(dictionary: dictionary as! NSDictionary)
+        let usersData = defaults.object(forKey: "currentUserData") as? [String: Data]
+        if let usersData = usersData {
+          for (_, uservalue) in usersData {
+            let dictionary = try! JSONSerialization.jsonObject(with: uservalue, options: []) as! NSDictionary
+            _currentUser = User(dictionary: dictionary)
+            if userAccounts[(_currentUser?.screenname)!] == nil {
+              userAccounts[(_currentUser?.screenname)!] = _currentUser
+            }
+          }
+
         }
       }
       return _currentUser
     }
-
     set(user) {
-      _currentUser = user
-      
+      if user == nil {
+        userAccounts.removeValue(forKey: (_currentUser?.screenname)!)
+        _currentUser = user
+
+      }
+      else {
+        _currentUser = user
+        userAccounts[(_currentUser?.screenname)!] = _currentUser
+      }
+
       let defaults = UserDefaults.standard
-      if let user = user,
-        let userData = try? JSONSerialization.data(withJSONObject: user.dictionary!, options: []) {
-          defaults.set(userData, forKey: "currentUserData")
-      } else {
+
+      if userAccounts.isEmpty {
         defaults.removeObject(forKey: "currentUserData")
+      }
+      else {
+        var userData = [String: Data]()
+        for (userkey, uservalue) in userAccounts {
+          let data = try! JSONSerialization.data(withJSONObject: uservalue.dictionary!, options: [])
+          userData[userkey] = data
+        }
+        defaults.set(userData, forKey: "currentUserData")
       }
 
       defaults.synchronize()
+
     }
   }
 
-  static var _accounts: [User]?
-  //static var userAccounts = [User]()
-
-  class var userAccounts: [User]? {
-    get {
-      if _accounts == nil {
-        let defaults = UserDefaults.standard
-        let accountsData = defaults.object(forKey: "accountsData") as? Data
-
-        if let accountsData = accountsData,
-          let dictionary = try? JSONSerialization.jsonObject(with: accountsData as Data, options: []) {
-            let users = dictionary as! [NSDictionary]
-          for user in users {
-            _accounts?.append(User(dictionary: user))
-          }
-        }
-      }
-      return _accounts
+  class func changeUser(user: User) {
+    if userAccounts[user.screenname!] != nil {
+      _currentUser = user
     }
+  }
 
-    set(accounts) {
-      _accounts = accounts
-
-      let defaults = UserDefaults.standard
-      if let accounts = accounts {
-        var accountsData = [Data]()
-        for user in accounts {
-          if let item = try? JSONSerialization.data(withJSONObject: user.dictionary!, options: []) {
-            accountsData.append(item)
-          }
+  class func delete(user: User) {
+    if _currentUser?.screenname == user.screenname {
+      for (_, value) in userAccounts {
+        if value.screenname != _currentUser?.screenname {
+          _currentUser = value
+          break
         }
-        defaults.set(accountsData, forKey: "accountsData")
-      } else {
-        defaults.removeObject(forKey: "accountsData")
       }
-
-      defaults.synchronize()
+    }
+    if userAccounts[user.screenname!] != nil {
+      userAccounts.removeValue(forKey: user.screenname!)
     }
   }
 }
