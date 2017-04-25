@@ -114,4 +114,8 @@ class AccountsViewController: UIViewController, UITableViewDataSource, UITableVi
       }
     }
   }
+
+  @IBAction func onLogoutButton(_ sender: Any) {
+    TwitterClient.sharedInstance?.logout()
+  }
 }

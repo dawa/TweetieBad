@@ -18,10 +18,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   @IBOutlet weak var followersLabel: UILabel!
   @IBOutlet weak var followingLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var cancelButton: UIBarButtonItem!
 
   var user: User!
   var tweets: [Tweet]!
   var screenName: String?
+  var cancelButtonEnabled = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +32,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 220
     tableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
+
+    if cancelButtonEnabled == true {
+      cancelButton.title = "Cancel"
+    } else {
+      cancelButton.title = "Logout"
+    }
 
     if screenName != nil {
       TwitterClient.sharedInstance?.userShow(screen_name: screenName!, success: { (user: User) in
@@ -90,5 +98,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     cell.tweet = tweets[indexPath.row]
     return cell
+  }
+
+  @IBAction func onCancel(_ sender: Any) {
+    if cancelButtonEnabled == true {
+      dismiss(animated: true, completion: nil)
+    } else {
+      TwitterClient.sharedInstance?.logout()
+    }
   }
 }

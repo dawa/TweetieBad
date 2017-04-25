@@ -160,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="777" y="2024"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="Tdc-Rc-hhS">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="iXe-lk-WQF" customClass="ProfileViewController" customModule="TweetieBad" customModuleProvider="target" sceneMemberID="viewController">
@@ -264,9 +264,17 @@
                             <constraint firstItem="G6l-sk-0EX" firstAttribute="top" secondItem="53M-hY-oHV" secondAttribute="bottom" id="w4U-L4-vyW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sEB-QY-KSX"/>
+                    <navigationItem key="navigationItem" title="Profile" id="sEB-QY-KSX">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="8pL-lg-j7W">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onCancel:" destination="iXe-lk-WQF" id="cHc-es-0Rt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backgroundImageView" destination="G6l-sk-0EX" id="heM-K0-f2g"/>
+                        <outlet property="cancelButton" destination="8pL-lg-j7W" id="QAz-PP-DUV"/>
                         <outlet property="followersLabel" destination="oK6-mL-vtn" id="kCn-Pr-Qko"/>
                         <outlet property="followingLabel" destination="JSz-wl-hdk" id="kCH-xj-q15"/>
                         <outlet property="profileImageView" destination="GZl-LQ-slK" id="PhS-N1-8Qq"/>
@@ -679,7 +687,7 @@
             </objects>
             <point key="canvasLocation" x="3310" y="143"/>
         </scene>
-        <!--Compose View Controller-->
+        <!--Tweet-->
         <scene sceneID="NjT-KH-FjF">
             <objects>
                 <viewController id="GGa-k0-N5h" customClass="ComposeViewController" customModule="TweetieBad" customModuleProvider="target" sceneMemberID="viewController">
@@ -749,14 +757,14 @@
                             <constraint firstItem="uqq-0c-8ap" firstAttribute="centerY" secondItem="71h-IK-pYR" secondAttribute="centerY" id="nBy-OC-IKm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qhD-xt-eBF">
+                    <navigationItem key="navigationItem" title="Tweet" id="qhD-xt-eBF">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="dVJ-Zc-vCg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCancelButton:" destination="GGa-k0-N5h" id="iPT-wB-n3r"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="Kb0-LN-vEy">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="Kb0-LN-vEy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onTweetButton:" destination="GGa-k0-N5h" id="cz6-Bv-Jih"/>
@@ -777,7 +785,7 @@
             </objects>
             <point key="canvasLocation" x="2460" y="2024"/>
         </scene>
-        <!--Accounts View Controller-->
+        <!--Accounts-->
         <scene sceneID="UU2-2E-4ip">
             <objects>
                 <viewController storyboardIdentifier="AccountsViewController" id="ClT-H3-gGc" customClass="AccountsViewController" customModule="TweetieBad" customModuleProvider="target" sceneMemberID="viewController">
@@ -849,7 +857,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rC4-XE-fnn"/>
+                    <navigationItem key="navigationItem" title="Accounts" id="rC4-XE-fnn">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="HHB-vt-VFb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="ClT-H3-gGc" id="Kk4-c7-Baf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mbe-dP-TRC" id="Vbe-wz-ndt"/>
                         <segue destination="yRI-pV-tBq" kind="presentation" identifier="accountsSegue" id="5rw-gc-qdD"/>
@@ -919,10 +934,13 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ygi-Cy-EEr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5JR-B4-BEP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5JR-B4-BEP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.25486227750000001" green="0.75833537269999995" blue="0.99668069950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -938,10 +956,13 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="zm8-b5-kYh" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XHY-bj-UGz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XHY-bj-UGz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.25486227750000001" green="0.75833537269999995" blue="0.99668069950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -976,10 +997,13 @@
             <objects>
                 <navigationController storyboardIdentifier="AccountsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="1nx-5Q-tFP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Ye-zI-9sL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Ye-zI-9sL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.25486227750000001" green="0.75833537269999995" blue="0.99668069950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

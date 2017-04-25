@@ -30,6 +30,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 220
 
+    if mentionsTimeline == true {
+      navigationItem.title = "Mentions"
+    }
 
     // Infinite Scrolling
     let tableFooterView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
@@ -116,6 +119,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
       let cell = sender as! MessageCell
       let indexPath = tableView.indexPath(for: cell)!
       let tweet = tweets![indexPath.row]
+      destinationViewController.cancelButtonEnabled = true
       destinationViewController.screenName = tweet.screenName
     }
   }
